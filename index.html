@@ -35,8 +35,6 @@
         } catch(e) {
             // do nothing;
         }
-
-        console.log(dogDay);
         dogDayEl.textContent = dogDay;
     }
 
@@ -48,7 +46,13 @@
         humanBirthday = new Date(humanBirthday);
         dogBirthday = new Date(dogBirthday);
 
-        return new Date((7 * dogBirthday - humanBirthday) / 6).toDateString();
+        var dd = new Date((7 * dogBirthday - humanBirthday) / 6);
+
+        if (!dd.getTime()) {
+            return "";
+        }
+
+        return dd.toDateString();
     }
 
     humanBirthdayEl.addEventListener("input", processInput);

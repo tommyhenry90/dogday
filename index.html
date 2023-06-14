@@ -1,1 +1,52 @@
-hello world
+<body>
+    <h1>
+        When are you the same age as your dog?
+    </h1>
+
+    <div>
+        <label>
+            Your Birthday
+        </label>
+        <input id="human-birthday"> 
+    </div>
+
+    <div>
+        <label>
+            Dog's Birthday
+        </label>
+        <input id="dog-birthday">
+    </div>
+
+    <div>
+        <span id="dogday"></span>
+    </div>
+</body>
+
+<script>
+    const humanBirthdayEl = document.getElementById('human-birthday');
+    const dogBirthdayEl = document.getElementById('dog-birthday');
+    const dogDayEl = document.getElementById('dog-day');
+
+    function processInput() {
+        var dogDay = "";
+        try {
+            dogDay = calculateDogDay();
+        } catch(e) {
+            // do nothing;
+        }
+        dogDayEl.value = dogDay;
+    }
+
+    function calculateDogDay() {
+        var humanBirthday = humanBirthdayEl.value;
+        var dogBirthday = dogBirthdayEl.value;
+
+        humanBirthday = new Date(humanBirthday);
+        dogBirthday = new Date(dogBirthday);
+
+        return new Date((7 * dogBirthday - humanBirthday) / 6).toDateString();
+    }
+
+    humanBirthdayEl.addEventListener("input", processInput);
+    dogBirthdayEl.addEventListener("input", processInput);
+</script>

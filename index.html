@@ -35,10 +35,13 @@
         } catch(e) {
             // do nothing;
         }
+
+        console.log(dogDay);
         dogDayEl.value = dogDay;
     }
 
     function calculateDogDay() {
+        console.log("calculating Date");
         var humanBirthday = humanBirthdayEl.value;
         var dogBirthday = dogBirthdayEl.value;
 

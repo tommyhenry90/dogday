@@ -79,7 +79,10 @@
             return null;
         }
 
-        var age = dd.getUTCFullYear() - humanBirthday.getUTCFullYear();
+        var age = new Date(date - humanBirthday).getUTCFullYear() - 1970;
+        
+        date = date.toDateString();
+
         return {date, age};
     }
 

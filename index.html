@@ -29,13 +29,13 @@
         <div>
             <div>
                 <label>Your Special Day</label>
-                <h2 id="dogday" class="result"></h2>
+                <h2 id="dogday" class="result">&dash;</h2>
             </div>
             
             <div>
                 <label>You will both be</labeL>
                 <h2 class="result">
-                    <span id="ageintersection"></span> years old
+                    <span id="ageintersection">&dash;</span> years old
                 </h2>
             </div>
         </div>
@@ -58,8 +58,8 @@
         }
 
         if (!dogDay) {
-            dogDayEl.textContent = "-";
-            ageEl.textContent = "-";
+            dogDayEl.innerHTML = "&dash;";
+            ageEl.innerHTML = "&dash;";
             return;
         }
 

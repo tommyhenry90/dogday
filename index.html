@@ -1,45 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
     <title>
         Dog Day
     </title>
 </head>
 
 <body>
-    <div class="container">
-        <h1>
-            When are you the same age as your dog?
-        </h1>
-    
-        <div>
-            <label>
-                Your Birthday
-            </label>
-            <input id="human-birthday"> 
-        </div>
-    
-        <div>
-            <label>
-                Dog's Birthday
-            </label>
-            <input id="dog-birthday">
-        </div>
-    
-        <div>
+    <main class="wrapper">
+        <section class="container">
+            <h2>
+                When are you the same age as your dog?
+            </h2>
             <div>
-                <label>Your Special Day</label>
-                <h2 id="dogday" class="result">&dash;</h2>
+                <label>
+                    Your Birthday
+                </label>
+                <input id="human-birthday"> 
             </div>
-            
+        
             <div>
-                <label>You will both be</labeL>
-                <h2 class="result">
-                    <span id="ageintersection">&dash;</span> years old
-                </h2>
+                <label>
+                    Dog's Birthday
+                </label>
+                <input id="dog-birthday">
+            </div>
+        
+            <div>
+                <div>
+                    <label>Your Special Day</label>
+                    <h3 id="dogday" class="result">&dash;</h3>
+                </div>
+                
+                <div>
+                    <label>You will both be</labeL>
+                    <h3 class="result">
+                        <span id="ageintersection">&dash;</span> years old
+                    </h3>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 </body>
 
 <script>
@@ -93,15 +96,7 @@
 </script>
 
 <style>
-    body {
-        display: flex;
-        justify-content: center;
-    }
 
-    .container {
-        max-width: 80rem;
-        padding: 2rem;
-    }
 </style>
 
 <style>

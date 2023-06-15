@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
     <title>
-        Dog Day
+        Doggy Lap Day
     </title>
 </head>
 
@@ -12,35 +12,41 @@
     <main class="wrapper">
         <section class="container">
             <h2>
-                When are you the same age as your dog?
+                When is your lap day?
             </h2>
-            <div>
-                <label>
-                    Your Birthday
-                </label>
-                <input id="human-birthday" type="date"> 
-            </div>
-        
-            <div>
-                <label>
-                    Dog's Birthday
-                </label>
-                <input id="dog-birthday" type="date">
-            </div>
-        
-            <div>
+            <p>
+                Your lap day is when your dog's age (in dog years) catches up to your age (in human years)
+            </p>
+            <fieldset>
+
                 <div>
-                    <label>Your Special Day</label>
-                    <h3 id="dogday" class="result">&dash;</h3>
+                    <label>
+                        Your birthday
+                    </label>
+                    <input id="human-birthday" type="date"> 
                 </div>
-                
+            
                 <div>
-                    <label>You will both be</labeL>
-                    <h3 class="result">
-                        <span id="ageintersection">&dash;</span> years old
-                    </h3>
+                    <label>
+                        Your dog's birthday
+                    </label>
+                    <input id="dog-birthday" type="date">
                 </div>
-            </div>
+            
+                <div>
+                    <div>
+                        <label>Your lap day is</label>
+                        <h3 id="dogday" class="result">&dash;</h3>
+                    </div>
+                    
+                    <div>
+                        <label>You will both be</labeL>
+                        <h3 class="result">
+                            <span id="ageintersection">&dash;</span> years old
+                        </h3>
+                    </div>
+                </div>
+            </fieldset>
         </div>
     </main>
 </body>

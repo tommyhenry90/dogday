@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
@@ -18,36 +18,61 @@
                 Your lap day is when your dog's age (in dog years) catches up to your age (in human years)
             </p>
             <fieldset>
-
-                <div>
-                    <label>
+                <div id="human-birthday">
+                    <h3>
                         Your birthday
-                    </label>
-                    <input id="human-birthday" type="date"> 
+                    </h3>
+                    <div class="input-row">
+                        <div class="input-col">
+                            <label for="human-birthday__day">Day</label>
+                            <input id="human-birthday__day" type="tel" pattern="">
+                        </div>
+                        <div class="input-col">
+                            <label for="human-birthday__month">Month</label>
+                            <input id="human-birthday__month" type="tel">
+                        </div>
+                        <div class="input-col">
+                            <label for="human-birthday__year">Year</label>
+                            <input id="human-birthday__year" type="tel">
+                        </div>
+                    </div>
                 </div>
             
-                <div>
-                    <label>
+                <div id="dog-birthday">
+                    <h3>
                         Your dog's birthday
-                    </label>
-                    <input id="dog-birthday" type="date">
+                    </h3>
+                    <div class="input-row">
+                        <div class="input-col">
+                            <label for="dog-birthday__day">Day</label>
+                            <input id="dog-birthday__day" type="tel" pattern="\d{1,2}">
+                        </div>
+                        <div class="input-col">
+                            <label for="dog-birthday__month">Month</label>
+                            <input id="dog-birthday__month" pattern="\d{1,2}">
+                        </div>
+                        <div class="input-col">
+                            <label for="dog-birthday__year">Year</label>
+                            <input id="dog-birthday__year" type="tel" pattern="\d{4}">
+                        </div>
+                    </div>
                 </div>
             
                 <div>
                     <div>
-                        <label>Your lap day is</label>
+                        <label for="dogday">Your lap day is</label>
                         <h3 id="dogday" class="result">&dash;</h3>
                     </div>
                     
                     <div>
-                        <label>You will both be</labeL>
+                        <label for="ageintersection">You will both be</labeL>
                         <h3 class="result">
                             <span id="ageintersection">&dash;</span> years old
                         </h3>
                     </div>
                 </div>
             </fieldset>
-        </div>
+        </section>
     </main>
 </body>
 
@@ -56,7 +81,30 @@
     const dogBirthdayEl = document.getElementById('dog-birthday');
     const dogDayEl = document.getElementById('dogday');
     const ageEl = document.getElementById('ageintersection');
-    const resultEl = document.getElementById('result');
+
+    const humanBirthday = {
+        day: document.getElementById('human-birthday__day'),
+        month: document.getElementById('human-birthday__month'),
+        year: document.getElementById('human-birthday__year'),
+        date: function () {
+            if (!this.year.value || !this.month.value || !this.day.value) {
+                return null;
+            }
+            return new Date(this.year.value, this.month.value, this.day.value);
+        }
+    };
+
+    const dogBirthday = {
+        day: document.getElementById('dog-birthday__day'),
+        month: document.getElementById('dog-birthday__month'),
+        year: document.getElementById('dog-birthday__year'),
+        date: function () {
+            if (!this.year.value || !this.month.value || !this.day.value) {
+                return null;
+            }
+            return new Date(this.year.value, this.month.value, this.day.value);
+        }
+    };
 
     function processInput() {
         var dogDay = "";
@@ -78,31 +126,48 @@
     }
 
     function calculateDogDay() {
-        var humanBirthday = humanBirthdayEl.value;
-        var dogBirthday = dogBirthdayEl.value;
+        if (!humanBirthday.date() || !dogBirthday.date()) {
+            return null;
+        }
 
-        humanBirthday = new Date(humanBirthday);
-        dogBirthday = new Date(dogBirthday);
-
-        var date = new Date((7 * dogBirthday - humanBirthday) / 6);
+        var date = new Date((7 * dogBirthday.date() - humanBirthday.date()) / 6);
 
         if (!date.getTime()) {
             return null;
         }
 
-        var age = new Date(date - humanBirthday).getUTCFullYear() - 1970;
+        var age = new Date(date - humanBirthday.date()).getUTCFullYear() - 1970;
+
+        if (age < 0) {
+            return null;
+        }
         
         date = date.toDateString();
 
         return {date, age};
     }
 
-    humanBirthdayEl.addEventListener("input", processInput);
-    dogBirthdayEl.addEventListener("input", processInput);
+    humanBirthdayEl.querySelectorAll("input").forEach(function(input) {
+        input.addEventListener("input", processInput);
+    });
+    dogBirthdayEl.querySelectorAll("input").forEach(function(input) {
+        input.addEventListener("input", processInput);
+    });
 </script>
 
 <style>
+    .input-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+    .input-col {
+        flex-grow: 1;
+    }
 
+    .input-col:last-child {
+        flex-grow: 2;
+    }
 </style>
 
 <style>
